@@ -23,7 +23,7 @@
                     <td>{{ $value->id }}</td>
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->grade->name}}</td>
-                    <td>{{ $value->department->name}}</td>
+                    <td>{{ $value->grade->department->name}}</td>
                     <td>{{ $value->email }}</td>
                     <td>{{ $value->address }}</td>
                 </tr>

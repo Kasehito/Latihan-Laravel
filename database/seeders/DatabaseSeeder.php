@@ -16,15 +16,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Cara yang benar untuk membuat departments
+        // Create departments
         $departments = [
             [
                 'name' => 'PPLG',
                 'desc' => 'Pemrograman Perangkat Lunak dan Gim'
             ],
             [
+                'name' => 'Animasi 2D',
+                'desc' => 'Animasi 2 Dimensi'
+            ],
+            [
                 'name' => 'Animasi 3D',
-                'desc' => 'Animasi 3D'
+                'desc' => 'Animasi 3 Dimensi'
             ],
             [
                 'name' => 'DKV',
@@ -34,30 +38,73 @@ class DatabaseSeeder extends Seeder
                 'name' => 'TG',
                 'desc' => 'Teknik Grafika'
             ],
-            [
-                'name' => 'Animasi 2D',
-                'desc' => 'Animasi 2D'
-            ],
         ];
 
+        // Create departments and store them in a collection
+        $departmentModels = collect();
         foreach ($departments as $dept) {
-            Department::create($dept);
+            $departmentModels[$dept['name']] = Department::create($dept);
         }
 
-        $departments = Department::all();
+        // Create grades with correct department_id
+        $grades = [
+            // PPLG
+            '10 PPLG 1' => 'PPLG',
+            '10 PPLG 2' => 'PPLG',
+            '11 PPLG 1' => 'PPLG',
+            '11 PPLG 2' => 'PPLG',
+            '12 PPLG 1' => 'PPLG',
+            '12 PPLG 2' => 'PPLG',
+            
+            // Animasi 3D
+            '10 ANIMASI 1' => 'Animasi 3D',
+            '10 ANIMASI 2' => 'Animasi 3D',
+            '10 ANIMASI 3' => 'Animasi 3D',
+            '11 ANIMASI 1' => 'Animasi 3D',
+            '11 ANIMASI 2' => 'Animasi 3D',
+            '11 ANIMASI 3' => 'Animasi 3D',
+            '12 ANIMASI 1' => 'Animasi 3D',
+            '12 ANIMASI 2' => 'Animasi 3D',
+            '12 ANIMASI 3' => 'Animasi 3D',
+            
+            // Animasi 2D
+            '10 ANIMASI 4' => 'Animasi 2D',
+            '10 ANIMASI 5' => 'Animasi 2D',
+            '11 ANIMASI 4' => 'Animasi 2D',
+            '11 ANIMASI 5' => 'Animasi 2D',
+            '12 ANIMASI 4' => 'Animasi 2D',
+            '12 ANIMASI 5' => 'Animasi 2D',
+            
+            // DKV
+            '10 DKV 1' => 'DKV',
+            '10 DKV 2' => 'DKV',
+            '11 DKV 1' => 'DKV',
+            '11 DKV 2' => 'DKV',
+            '12 DKV 1' => 'DKV',
+            '12 DKV 2' => 'DKV',
+            
+            // TG (DKV 3 & 4)
+            '10 DKV 3' => 'TG',
+            '10 DKV 4' => 'TG',
+            '10 DKV 5' => 'TG',
+            '11 DKV 3' => 'TG',
+            '11 DKV 4' => 'TG',
+            '12 DKV 3' => 'TG',
+            '12 DKV 4' => 'TG',
+            '12 DKV 5' => 'TG',
+        ];
 
-        // Create grades with department_id
-        $grades = collect(['11 PPLG 1', '11 PPLG 2', '12 PPLG 1', '12 PPLG 2','10 PPLG 1','10 PPLG 2','10 ANIMASI 1','10 ANIMASI 2','10 ANIMASI 3','10 ANIMASI 4','10 ANIMASI 5','10 DKV 1','10 DKV 2','10 DKV 3','10 DKV 4','11 ANIMASI 1','11 ANIMASI 2','11 ANIMASI 3','11 ANIMASI 4','11 ANIMASI 5','11 DKV 1','11 DKV 2','11 DKV 3','11 DKV 4','12 ANIMASI 1','12 ANIMASI 2','12 ANIMASI 3','12 ANIMASI 4','12 ANIMASI 5','12 DKV 1','12 DKV 2','12 DKV 3','12 DKV 4'])->map(function ($name) use ($departments) {
-            return Grade::create([
-                'name' => $name,
-                'department_id' => $departments->random()->id
-            ]);
-        });
+        $gradeModels = collect();
+        foreach ($grades as $gradeName => $deptName) {
+            $gradeModels->push(Grade::create([
+                'name' => $gradeName,
+                'department_id' => $departmentModels[$deptName]->id
+            ]));
+        }
 
-        // Create students with both grade_id and department_id
+        // Create students
         Student::factory(100)->create([
-            'grade_id' => fn() => $grades->random()->id,
-            'department_id' => fn() => $departments->random()->id,
+            'grade_id' => fn() => $gradeModels->random()->id,
         ]);
     }
 }

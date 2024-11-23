@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Student;
 use App\Models\Grade;
-use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,11 +16,9 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'grade_id' => Grade::factory(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'address' => $this->faker->address(),
-            'department_id' => Department::factory(),
+            'name' => fake()->name(),
+            'email' => fake()->safeEmail(),
+            'address' => fake()->address(),
         ];
     }
 }

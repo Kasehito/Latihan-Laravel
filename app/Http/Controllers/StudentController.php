@@ -9,9 +9,9 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with('grade')->get();
+        $students = Student::with('grade', 'department')->get();
         return view('student', [
-            'students' => $students,
+            'students' => $students,    
             'title' => 'Student List'
         ]);
     }
