@@ -29,7 +29,10 @@
                         Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Grade
+                        Department
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Students
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Edit
@@ -48,6 +51,11 @@
                         </td>
                         <td class="px-6 py-4 font-normal text-black dark:text-white">
                             {{ $grade->department->name }}
+                        </td>
+                        <td>
+                        @foreach($grade->students as $student)
+                        <li>{{ $student->name }}</li>
+                        @endforeach
                         </td>
                         <td class="px-6 py-4">
                             <!-- Modal toggle -->

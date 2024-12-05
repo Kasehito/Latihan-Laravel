@@ -11,8 +11,8 @@
 </head>
 <body class="h-full bg-white dark:bg-gray-700">
     <div class="min-h-full">
-        @include('admin.admin-navbar')
-        @include('admin.admin-sidebar')
+        <x-admin-navbar />
+        <x-admin-sidebar />
         <main class="h-auto p-4 pt-20 bg-white md:ml-64 dark:bg-gray-700">
             <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 {{ $slot }}

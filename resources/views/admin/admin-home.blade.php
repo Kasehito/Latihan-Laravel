@@ -15,8 +15,17 @@
             <!-- Card Statistics -->
             <div class="p-4 bg-white rounded-lg shadow dark:bg-gray-800">
                 <h2 class="mb-4 text-xl font-bold dark:text-white">Total Students</h2>
-                <p class="text-2xl font-bold text-blue-600 dark:text-blue-500">150</p>
+                <p class="text-2xl font-bold text-blue-600">{{ $student }}</p>
             </div>
+            <div class="p-4 bg-white rounded-lg shadow dark:bg-gray-800">
+                <h2 class="mb-4 text-xl font-bold dark:text-white">Total Department</h2>
+                <p class="text-2xl font-bold text-blue-600">{{ $department }}</p>
+            </div>
+            <div class="p-4 bg-white rounded-lg shadow dark:bg-gray-800">
+                <h2 class="mb-4 text-xl font-bold dark:text-white">Total Grades</h2>
+                <p class="text-2xl font-bold text-blue-600">{{ $grade }}</p>
+            </div>
+
             <!-- Tambahkan card statistik lainnya sesuai kebutuhan -->
         </div>
     </div>
