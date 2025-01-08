@@ -6,10 +6,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\HomeAdminController;
-use App\Http\Controllers\StudentAdminController;
-use App\Http\Controllers\GradeAdminController;
-use App\Http\Controllers\DepartmentAdminController;
+use App\Http\Controllers\admin\HomeAdminController;
+use App\Http\Controllers\admin\StudentAdminController;
+use App\Http\Controllers\admin\DepartmentAdminController;
+use App\Http\Controllers\admin\GradeAdminController;
 
 Route::get('/', function () {
     return view('welcome');
