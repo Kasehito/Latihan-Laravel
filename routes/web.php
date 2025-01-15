@@ -36,3 +36,19 @@ Route::prefix('admin')->group(function () {
     Route::put('/students/{student}', [StudentAdminController::class, 'update'])->name('admin.students.update');
     Route::delete('/students/{student}', [StudentAdminController::class, 'destroy'])->name('admin.students.destroy');
 });
+
+// Rute untuk Grade
+Route::prefix('admin/grades')->group(function () {
+    Route::get('/', [GradeAdminController::class, 'grades'])->name('admin.grades');
+    Route::post('/store', [GradeAdminController::class, 'store'])->name('admin.grades.store');
+    Route::put('/{grade}', [GradeAdminController::class, 'update'])->name('admin.grades.update');
+});
+
+// Rute untuk Department
+Route::prefix('admin/departments')->group(function () {
+    Route::get('/', [DepartmentAdminController::class, 'departments'])->name('admin.departments');
+    Route::post('/store', [DepartmentAdminController::class, 'store'])->name('admin.departments.store');
+    Route::put('/{department}', [DepartmentAdminController::class, 'update'])->name('admin.departments.update');
+});
+
+Route::post('/grades/store', [GradeAdminController::class, 'store'])->name('admin.grades.store');

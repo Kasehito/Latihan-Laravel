@@ -16,4 +16,26 @@ class DepartmentAdminController extends Controller
             'title' => 'Department'
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+        ]);
+
+        Department::create($validated);
+        return redirect()->route('admin.departments')->with('success', 'Department added successfully!');
+    }
+
+    public function update(Request $request, Department $department)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+        ]);
+
+        $department->update($validated);
+        return redirect()->route('admin.departments')->with('success', 'Department updated successfully!');
+    }
 }
