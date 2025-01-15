@@ -28,3 +28,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/department', [DepartmentAdminController::class, 'departments'])->name('admin.admin-department');
     Route::get('/grades', [GradeAdminController::class, 'grades'])->name('admin.admin-grade');
 });
+
+// Student Admin Routes
+Route::prefix('admin')->group(function () {
+    Route::get('/students', [StudentAdminController::class, 'students'])->name('admin.students');
+    Route::post('/students', [StudentAdminController::class, 'store'])->name('admin.students.store');
+    Route::put('/students/{student}', [StudentAdminController::class, 'update'])->name('admin.students.update');
+    Route::delete('/students/{student}', [StudentAdminController::class, 'destroy'])->name('admin.students.destroy');
+});
